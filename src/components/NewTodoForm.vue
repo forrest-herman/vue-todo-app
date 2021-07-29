@@ -13,7 +13,10 @@
             <button @click="removeTodo(index)">X</button>
         </li>
     </ul>
-    <button @click="markAllDone">Mark All Done</button>
+    <div class="flex-row">
+        <button @click="markAllDone">Mark All Done</button>
+        <button @click="removeAllDone">Remove All Done</button>
+    </div>
 </template>
 
 <script>
@@ -47,12 +50,17 @@ export default {
             todos.value.map((todo) => (todo.done = true))
         }
 
+        function removeAllDone() {
+            todos.value = todos.value.filter((todo) => !todo.done)
+        }
+
         return {
             addNewTodo,
             newTodo,
             todos,
             removeTodo,
             markAllDone,
+            removeAllDone,
         }
     },
 }
@@ -61,6 +69,12 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 li {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+}
+.flex-row {
     display: flex;
     justify-content: center;
     flex-direction: row;
